@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <direct.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -200,12 +201,29 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
     int respuesta = 2,resLSOBB,resABB, alta=0,baja=0,evocar=0;
     Envio aux;
     FILE* fp;
+    char cwd[1024];
 
-    if ((fp = fopen("C:/Users/lautaro/OneDrive/Escritorio/UNIVERSIDAD/EDA/untitled1/Operaciones-Envios_prueba.txt", "r")) == NULL)
-    {
-        printf("No se pudo abrir el archivo");
-        return 0;
+
+
+    // Obtener el directorio actual
+    if (_getcwd(cwd, sizeof(cwd)) == NULL) {
+        perror("Error al obtener el directorio actual");
+        return 1;
     }
+
+
+
+
+    // Concatenar la ruta del archivo al directorio actual
+    char filepath[1024];
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios_prueba.txt");
+
+    // Intentar abrir el archivo en modo lectura
+    if ((fp = fopen(filepath, "r")) == NULL) {
+        printf("No se pudo abrir el archivo\n");
+        return 1;
+    }
+
     else
     {
         //printf("HOLAAA");

@@ -33,9 +33,6 @@ void initLSD(lsd *lista) {
 
 
 int localizarlsd(lsd *lista, char codigo[],int *pos){
-
-
-
     float temp = 0.0;
     int i = 0;
     while (i < lista->contador && strcmp(lista->envios[i].codigo,codigo)!=0){
