@@ -44,9 +44,28 @@ int localizarlsd(lsd *lista, char codigo[],int *pos){
 
 
     if(strcmp(lista->envios[i].codigo,codigo)==0){
+
+        if(lista->eExMax<temp){
+            lista->eExMax = temp+1;
+        }
+        lista->eExCant++;
+        lista->costoEvoE+=temp;
+        //lista->tempe+=lista->costoEvoE;
+        lista->eExMed = lista->costoEvoE/(lista->eExCant);
+
         return 0;
 
     }else{
+        if(lista->eFrMax<temp){
+            lista->eFrMax = temp+1;
+        }
+
+        lista->eFrCant++;
+        lista->costoEvoF+=temp;
+        //lista->tempef+=lista->costoEvoF;
+        lista->eFrMed = lista->costoEvoF/(lista->eFrCant);
+
+
         return 1;
     }
 
@@ -59,7 +78,7 @@ int AltaLSD(lsd *lista, Envio envio){
 
     int res = localizarlsd(lista, envio.codigo,&pos);
 
-    if(res==1){
+    if(res==1 && lista->contador != MAX_Envios){
 
             lista->envios[pos] = envio;
 
@@ -90,16 +109,23 @@ int Bajalsd(lsd *lista, Envio envio){
 
             if((pos+1)== lista->contador){
                 //caso en el que el elemento a elimnar es el ultimo de la lista
+                lista->costo=0;
                 lista->contador --;
+
             }else{
                 //caso en el que el elemento no es el ultimo
-
+                lista->costo++;
                 lista->envios[pos] = lista->envios[lista->contador-1];
                 lista->contador--;
             }
 
+            lista->bCant++;
 
+            lista->tempb+=lista->costo;
 
+            lista->bMed=lista->tempb/(lista->bCant);
+
+            lista->bMax = 1;
 
         }
 

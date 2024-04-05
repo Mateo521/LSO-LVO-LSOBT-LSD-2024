@@ -132,6 +132,8 @@ int main()
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSOBT   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lsobt.aMax, lsobt.aMed, lsobt.bMax, lsobt.bMed, lsobt.eExMax, lsobt.eExMed, lsobt.eFrMax, lsobt.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
+                printf("LSD  :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lsd.aMax, lsd.aMed, lsd.bMax, lsd.bMed, lsd.eExMax, lsd.eExMed, lsd.eFrMax, lsd.eFrMed);
+                printf("-----------------------------------------------------------------------------------------------\n");
                 break;
             case 2:
 
@@ -216,7 +218,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios_prueba.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
