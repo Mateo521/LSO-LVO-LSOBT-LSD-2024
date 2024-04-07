@@ -17,10 +17,36 @@ typedef struct {
     int contador;
    int vector_aux[MAX_Envios];
     float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
+
+
+
+    // Nuevos campos para seguimiento de LocalizarLSOBT
+    int exitos;
+    int fracasos;
+    int max_exitos;
+    int max_fracasos;
+    int total_exitos;
+    int total_fracasos;
+    int total_celdas_consultadas_exitos;
+    int total_celdas_consultadas_fracasos;
+    float media_exitos;
+    float media_fracasos;
+
 }lsobt;
 
 
 void initLSOBT(lsobt *lista) {
+     lista->exitos = 0;
+    lista->fracasos  = 0;
+    lista->max_exitos = 0;
+    lista->max_fracasos = 0;
+    lista->total_exitos = 0;
+    lista->total_fracasos = 0;
+    lista-> total_celdas_consultadas_fracasos = 0;
+    lista->total_celdas_consultadas_exitos = 0;
+    lista->media_fracasos = 0.0;
+    lista->media_exitos = 0.0;
+    // Nuevas variables para el seguimiento de éxitos y fracasos
 
     lista->eExMax = 0.0;
     lista->eExMed = 0.0;
@@ -43,68 +69,57 @@ void initLSOBT(lsobt *lista) {
 
 
 
-int LocalizarLSOBT(lsobt *lista, char codigo[], int *pos, int p){
-    float temp =0.0;
-    int li = 0; //li inclusivo
-    int ls = lista->contador; //ls exclusivo
+int LocalizarLSOBT(lsobt *lista, char codigo[], int *pos, int p) {
+    int celdas_consultadas = 0;
+    int li = 0; // li inclusivo
+    int ls = lista->contador; // ls exclusivo
     int m;
-    while(li < ls) {
-        temp++;
+
+    while (li < ls) {
         m = ceil((li + ls) / 2); //Segmento mas grande a izquierda
-        if(strcmp(codigo, lista->envios[m].codigo) == 0) {
+        celdas_consultadas++;
+
+
+        if (strcmp(codigo, lista->envios[m].codigo) == 0) {
+
 
             *pos = m;
-            if(p==0){
-
-                if(lista->eExMax<temp){
-                    lista->eExMax = temp;
+            if (p == 0) {
+                /*
+                printf("CELDAS CONSULTADAS %d\n", celdas_consultadas);
+                printf("m %d , li %d , ls %d \n", m , li , ls);
+                 */
+                lista->exitos++;
+                lista->total_exitos++;
+                if (lista->exitos > lista->max_exitos) {
+                    lista->max_exitos = lista->exitos ;
                 }
-                lista->eExCant++;
 
-                lista->costoEvoE+=temp;
-
-                lista->tempe+=lista->costoEvoE;
-
-                lista->eExMed = lista->costoEvoE/(lista->eExCant);
-
+                lista->total_celdas_consultadas_exitos += celdas_consultadas; // Actualizar el total de celdas consultadas para éxitos
+                lista->media_exitos = (float) lista->total_celdas_consultadas_exitos / lista->total_exitos; // Calcular la media para éxitos
             }
-            return 1; //Elemento encontrado
-        } else if(strcmp(codigo, lista->envios[m].codigo) < 0) {
-
+            return 1; // Elemento encontrado
+        } else if (strcmp(codigo, lista->envios[m].codigo) < 0) {
             ls = m;
         } else {
-
             li = m + 1;
         }
-
-
-
-
     }
-
-
 
     *pos = li;
-    if(p==0){
 
-        if(lista->eFrMax<temp){
-            lista->eFrMax = temp;
+    if (p == 0) {
+        lista->fracasos++;
+        lista->total_fracasos++;
+        if (lista->fracasos > lista->max_fracasos) {
+            lista->max_fracasos = lista->fracasos ;
         }
-
-        lista->eFrCant++;
-        lista->costoEvoF+=temp;
-        lista->tempef+=lista->costoEvoF;
-        lista->eFrMed = lista->costoEvoF/(lista->eFrCant);
-
+        lista->total_celdas_consultadas_fracasos += celdas_consultadas; // Actualizar el total de celdas consultadas para fracasos
+        lista->media_fracasos = (float) lista->total_celdas_consultadas_fracasos / lista->total_fracasos; // Calcular la media para fracasos
     }
+
     return 0; // Elemento no encontrado
-
-
-
-
-
 }
-
 
 
 
