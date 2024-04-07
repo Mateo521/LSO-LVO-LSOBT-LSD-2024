@@ -58,8 +58,7 @@ void mostrarestructuraLSD(lsd *lista)
 }
 
 
-void mostrarestructuraLSOBT(lsobt *lista)
-{
+void mostrarestructuraLSOBT(lsobt *lista){
     int i;
 
     for(i = 0 ; i < lista->contador; i++)
@@ -123,7 +122,7 @@ int main()
         switch (opcion)
         {
             case 1:
-                system("cls");
+                //system("cls");
 
 
                 printf("\n         AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
@@ -218,7 +217,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios_prueba.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -271,7 +270,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                     AltaLSD(lsd,aux);
 
 
-                    AltaLSOBT(lsobt,aux);
+                AltaLSOBT(lsobt,aux);
 
                     AltaLVO(lvo,aux);
 

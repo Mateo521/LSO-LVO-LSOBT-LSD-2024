@@ -32,7 +32,7 @@ void initLSD(lsd *lista) {
 }
 
 
-int localizarlsd(lsd *lista, char codigo[],int *pos){
+int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
     float temp = 0.0;
     int i = 0;
     while (i < lista->contador && strcmp(lista->envios[i].codigo,codigo)!=0){
@@ -44,28 +44,31 @@ int localizarlsd(lsd *lista, char codigo[],int *pos){
 
 
     if(strcmp(lista->envios[i].codigo,codigo)==0){
+        if(p==0) {
 
-        if(lista->eExMax<temp){
-            lista->eExMax = temp+1;
+            if (lista->eExMax < temp) {
+                lista->eExMax = temp + 1;
+            }
+            lista->eExCant++;
+            lista->costoEvoE += temp;
+            //lista->tempe+=lista->costoEvoE;
+            lista->eExMed = lista->costoEvoE / (lista->eExCant);
         }
-        lista->eExCant++;
-        lista->costoEvoE+=temp;
-        //lista->tempe+=lista->costoEvoE;
-        lista->eExMed = lista->costoEvoE/(lista->eExCant);
-
         return 0;
 
     }else{
-        if(lista->eFrMax<temp){
-            lista->eFrMax = temp+1;
+        if(p==0) {
+
+            if (lista->eFrMax < temp) {
+                lista->eFrMax = temp + 1;
+            }
+
+            lista->eFrCant++;
+            lista->costoEvoF += temp;
+            //lista->tempef+=lista->costoEvoF;
+            lista->eFrMed = lista->costoEvoF / (lista->eFrCant);
+
         }
-
-        lista->eFrCant++;
-        lista->costoEvoF+=temp;
-        //lista->tempef+=lista->costoEvoF;
-        lista->eFrMed = lista->costoEvoF/(lista->eFrCant);
-
-
         return 1;
     }
 
@@ -76,7 +79,7 @@ int AltaLSD(lsd *lista, Envio envio){
 
     int pos,i;
 
-    int res = localizarlsd(lista, envio.codigo,&pos);
+    int res = localizarlsd(lista, envio.codigo,&pos,1);
 
     if(res==1 && lista->contador != MAX_Envios){
 
@@ -99,7 +102,7 @@ int Bajalsd(lsd *lista, Envio envio){
 
     int pos ,i;
 
-    int res = localizarlsd(lista,envio.codigo,&pos);
+    int res = localizarlsd(lista,envio.codigo,&pos,1);
 
     if(res==0){
         if((strcmp(lista->envios[pos].direccion , envio.direccion)==0) && (lista->envios[pos].dni_receptor == envio.dni_receptor)
@@ -125,7 +128,11 @@ int Bajalsd(lsd *lista, Envio envio){
 
             lista->bMed=lista->tempb/(lista->bCant);
 
-            lista->bMax = 1;
+            if (lista->costo > lista->bMax) {
+
+                lista->bMax = lista->costo; //maximo
+
+            }
 
         }
 
@@ -135,7 +142,7 @@ int Bajalsd(lsd *lista, Envio envio){
 
 int evocarLSD (lsd *lista, char codigo[], Envio *envio){
     int pos;
-    int res = localizarlsd(lista,codigo,&pos);
+    int res = localizarlsd(lista,codigo,&pos,0);
     if (res == 1){
         (*envio)= lista->envios[pos];
         return 1;// se

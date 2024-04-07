@@ -81,7 +81,7 @@ int AltaLVO(lvo *lista, Envio envio) {
     if (res == 0) {
         Nodo *nuevoNodo = (Nodo *)malloc(sizeof(Nodo));
         if (nuevoNodo == NULL) {
-            return -1; // Error de asignaciÛn de memoria
+            return -1; // Error de asignaciÔøΩn de memoria
         }
         nuevoNodo->envio = envio;
 
@@ -99,12 +99,38 @@ int AltaLVO(lvo *lista, Envio envio) {
 
         lista->contador++;
 
-        return 0; // InserciÛn exitosa
+        return 0; // InserciÔøΩn exitosa
     } else {
-        return 1; // El envÌo ya existe en la lista
+        return 1; // El envÔøΩo ya existe en la lista
     }
 }
 
+int BajaLVO(lvo *lista, Envio envio) {
+    int pos;
+    int localizar_resultado = LocalizarLVO(lista, envio.codigo, &pos, 1);
+
+    if (localizar_resultado) {
+        Nodo *actual = lista->inicio;
+        Nodo *anterior = NULL;
+        for (int i = 0; i < pos; i++) {
+            anterior = actual;
+            actual = actual->siguiente;
+        }
+        if (anterior == NULL) {
+            lista->inicio = actual->siguiente;
+        } else {
+            anterior->siguiente = actual->siguiente;
+        }
+
+        free(actual);
+
+        lista->contador--;
+
+        return 0; // Baja exitosa
+    } else {
+        return 1; // Env√≠o no encontrado en la lista
+    }
+}
 
 
 #define RS_H_INCLUDED
