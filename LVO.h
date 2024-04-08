@@ -143,7 +143,8 @@ int AltaLVO(lvo *lista, Envio envio) {
             }
             nuevoNodo->siguiente = anterior->siguiente;
             anterior->siguiente = nuevoNodo;
-                lista->costo_punteros_actualizados_a += 0.5;
+            lista->costo_punteros_actualizados_a += 0.5;
+            printf("cambio de puntero\n");
         }
 
         lista->contador++;
