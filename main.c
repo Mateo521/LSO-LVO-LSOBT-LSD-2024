@@ -134,7 +134,8 @@ int main()
                 printf("LSD  :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lsd.aMax, lsd.aMed, lsd.bMax, lsd.bMed, lsd.eExMax, lsd.eExMed, lsd.eFrMax, lsd.eFrMed);
 
                 printf("-----------------------------------------------------------------------------------------------\n");
-
+               printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.max_costo_a, lvo.costo_punteros_actualizados_a / lvo.num_altas,lvo.max_costo_b, lvo.costo_punteros_actualizados_b / lvo.num_bajas, lvo.eExMax, lvo.eExMed, lvo.eFrMax, lvo.eFrMed);
+                 printf("-----------------------------------------------------------------------------------------------\n");
 
                 break;
             case 2:
@@ -220,7 +221,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -302,7 +303,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                 evocarLSD(lsd,aux.codigo,&aux);
                 evocarLSO(lso,aux.codigo,&aux);
                 evocarLSOBT(lsobt,aux.codigo,&aux);
-                evocacionLVO(lvo,aux.codigo,&aux);
+             evocarLVO(lvo,aux.codigo,&aux);
             }
             else
             {

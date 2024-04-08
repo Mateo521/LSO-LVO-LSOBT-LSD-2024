@@ -55,10 +55,13 @@ int Localizar(lso *lista, char codigo[], int *pos, int p) {
             if(lista->eExMax<temp){
                 lista->eExMax = temp+1;
             }
+
             lista->eExCant++;
             lista->costoEvoE+=temp;
             lista->tempe+=lista->costoEvoE;
             lista->eExMed = lista->tempe/(lista->eExCant);
+
+
 
         }
 
