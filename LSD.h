@@ -117,7 +117,7 @@ int Bajalsd(lsd *lista, Envio envio){
 
             }else{
                 //caso en el que el elemento no es el ultimo
-                lista->costo++;
+                lista->costo = 1;
                 lista->envios[pos] = lista->envios[lista->contador-1];
                 lista->contador--;
             }

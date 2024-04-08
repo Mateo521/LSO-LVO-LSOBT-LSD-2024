@@ -1,3 +1,3 @@
-C:/Users/mateo/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/untitled1.dir
-C:/Users/mateo/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/mateo/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/lautaro/OneDrive/Escritorio/pruebasss/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/untitled1.dir
+C:/Users/lautaro/OneDrive/Escritorio/pruebasss/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/lautaro/OneDrive/Escritorio/pruebasss/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -79,20 +79,16 @@ int LocalizarLSOBT(lsobt *lista, char codigo[], int *pos, int p) {
         m = ceil((li + ls) / 2); //Segmento mas grande a izquierda
         celdas_consultadas++;
 
-
         if (strcmp(codigo, lista->envios[m].codigo) == 0) {
 
 
             *pos = m;
             if (p == 0) {
-                /*
-                printf("CELDAS CONSULTADAS %d\n", celdas_consultadas);
-                printf("m %d , li %d , ls %d \n", m , li , ls);
-                 */
+
                 lista->exitos++;
                 lista->total_exitos++;
-                if (lista->exitos > lista->max_exitos) {
-                    lista->max_exitos = lista->exitos ;
+                if (celdas_consultadas > lista->max_exitos) {
+                    lista->max_exitos = celdas_consultadas ;
                 }
 
                 lista->total_celdas_consultadas_exitos += celdas_consultadas; // Actualizar el total de celdas consultadas para éxitos
@@ -111,8 +107,8 @@ int LocalizarLSOBT(lsobt *lista, char codigo[], int *pos, int p) {
     if (p == 0) {
         lista->fracasos++;
         lista->total_fracasos++;
-        if (lista->fracasos > lista->max_fracasos) {
-            lista->max_fracasos = lista->fracasos ;
+        if (celdas_consultadas > lista->max_fracasos) {
+            lista->max_fracasos = celdas_consultadas ;
         }
         lista->total_celdas_consultadas_fracasos += celdas_consultadas; // Actualizar el total de celdas consultadas para fracasos
         lista->media_fracasos = (float) lista->total_celdas_consultadas_fracasos / lista->total_fracasos; // Calcular la media para fracasos
