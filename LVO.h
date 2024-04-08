@@ -132,7 +132,19 @@ int BajaLVO(lvo *lista, Envio envio) {
     }
 }
 
+int evocacionLVO (lvo *lista, char codigo[], Envio *envio){
+    int pos = 0, i= 0;
+    int res = Localizar(lista,codigo,&pos,0);
+    if (res == 1){
+        Nodo *anterior = lista->inicio;
+        for (i = 0; i < pos - 1; i++) {
+            anterior = anterior->siguiente;
+        }
 
+        *envio = anterior->envio;
+    }
+
+}
 #define RS_H_INCLUDED
 #define MaxEnviosRS 300
 

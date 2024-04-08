@@ -273,7 +273,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                     AltaLSD(lsd,aux);
 
 
-                AltaLSOBT(lsobt,aux);
+                    AltaLSOBT(lsobt,aux);
 
                     AltaLVO(lvo,aux);
 
@@ -288,7 +288,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
 
                     BajaLSOBT(lsobt,aux);
-
+                    BajaLVO(lvo,aux);
 
                 }
 
@@ -302,6 +302,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                 evocarLSD(lsd,aux.codigo,&aux);
                 evocarLSO(lso,aux.codigo,&aux);
                 evocarLSOBT(lsobt,aux.codigo,&aux);
+                evocacionLVO(lvo,aux.codigo,&aux);
             }
             else
             {
