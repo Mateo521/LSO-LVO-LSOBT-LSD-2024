@@ -220,7 +220,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
 
     // Concatenar la ruta del archivo al directorio actual
-    if ((fp = fopen(/*"Operaciones-Envios.txt"*/"C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/Operaciones-Envios_prueba.txt", "r")) == NULL)
+    if ((fp = fopen("Operaciones-Envios.txt", "r")) == NULL)
     {
         printf("No se pudo abrir el archivo");
         return 0;
