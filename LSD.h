@@ -2,7 +2,7 @@
 #include <String.h>
 #ifndef UNTITLED_LSO_H
 #define UNTITLED_LSO_H
-#define MAX_Envios 300
+#define MAX_Envios 250
 #endif //UNTITLED_LSO_H
 char *Mayusculas(char string[]);
 typedef struct {
@@ -52,7 +52,7 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
             lista->eExCant++;
             lista->costoEvoE += temp;
             //lista->tempe+=lista->costoEvoE;
-            lista->eExMed = lista->costoEvoE / (lista->eExCant);
+            lista->eExMed = (lista->costoEvoE / (lista->eExCant));
         }
         return 0;
 
@@ -66,7 +66,7 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
             lista->eFrCant++;
             lista->costoEvoF += temp;
             //lista->tempef+=lista->costoEvoF;
-            lista->eFrMed = lista->costoEvoF / (lista->eFrCant);
+            lista->eFrMed = (lista->costoEvoF / (lista->eFrCant));
 
         }
         return 1;

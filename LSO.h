@@ -5,7 +5,7 @@
 #include <String.h>
 #ifndef UNTITLED_LSO_H
 #define UNTITLED_LSO_H
-#define MAX_Envios 300
+#define MAX_Envios 250
 #endif //UNTITLED_LSO_H
 char *Mayusculas(char string[]);
 typedef struct {

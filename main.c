@@ -108,7 +108,7 @@ int main()
     initLSOBT(&lsobt);
     initLVO(&lvo);
 
-    LecturaOperaciones(&lso,&lsd, &lsobt,&lvo);
+
 
     do
     {
@@ -123,7 +123,7 @@ int main()
         {
             case 1:
                 //system("cls");
-
+                LecturaOperaciones(&lso,&lsd, &lsobt,&lvo);
 
                 printf("\n         AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
                 printf("-----------------------------------------------------------------------------------------------\n");
@@ -220,13 +220,10 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
 
     // Concatenar la ruta del archivo al directorio actual
-    char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios_prueba.txt");
-
-    // Intentar abrir el archivo en modo lectura
-    if ((fp = fopen(filepath, "r")) == NULL) {
-        printf("No se pudo abrir el archivo\n");
-        return 1;
+    if ((fp = fopen(/*"Operaciones-Envios.txt"*/"C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/Operaciones-Envios_prueba.txt", "r")) == NULL)
+    {
+        printf("No se pudo abrir el archivo");
+        return 0;
     }
 
     else
@@ -303,7 +300,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                 evocarLSD(lsd,aux.codigo,&aux);
                 evocarLSO(lso,aux.codigo,&aux);
                 evocarLSOBT(lsobt,aux.codigo,&aux);
-             evocarLVO(lvo,aux.codigo,&aux);
+                evocarLVO(lvo,aux.codigo,&aux);
             }
             else
             {
