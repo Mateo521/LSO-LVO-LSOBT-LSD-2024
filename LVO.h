@@ -84,15 +84,7 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
             lista->eExCant++;
             lista->costoEvoE+=temp;
             lista->tempe+=lista->costoEvoE;
-
-
-
         }
-
-
-
-
-
 
         return 1;
     } else {
@@ -100,8 +92,6 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
 
 
      temp++;
-
-
 
 
 
@@ -126,6 +116,8 @@ if(p==0){
 
 
     }
+
+
     return 0;
 }
 

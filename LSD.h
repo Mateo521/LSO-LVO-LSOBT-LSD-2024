@@ -42,7 +42,9 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
     }
     *pos = i;
 
-
+    if(i<lista->contador){
+        temp++;
+    }
     if(strcmp(lista->envios[i].codigo,codigo)==0){
         if(p==0) {
 

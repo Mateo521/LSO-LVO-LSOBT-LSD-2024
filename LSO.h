@@ -47,6 +47,12 @@ int Localizar(lso *lista, char codigo[], int *pos, int p) {
     }
 
     *pos = i;
+
+
+    if(i<lista->contador){
+        temp++;
+    }
+
     if (i < lista->contador && strcmp(lista->envios[i].codigo, codigo) == 0) {
 
 

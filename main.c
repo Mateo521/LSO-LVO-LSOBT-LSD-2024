@@ -204,7 +204,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     // Declaraciones e inicializaciones
     int respuesta = 2,resLSOBB,resABB, alta=0,baja=0,evocar=0;
-    Envio aux;
+    Envio aux,aux2;
     FILE* fp;
     char cwd[1024];
 
@@ -220,11 +220,15 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
 
     // Concatenar la ruta del archivo al directorio actual
-    if ((fp = fopen("Operaciones-Envios.txt", "r")) == NULL)
-    {
-        printf("No se pudo abrir el archivo");
-        return 0;
+    char filepath[1024];
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+
+    // Intentar abrir el archivo en modo lectura
+    if ((fp = fopen(filepath, "r")) == NULL) {
+        printf("No se pudo abrir el archivo\n");
+        return 1;
     }
+
 
     else
     {
@@ -297,10 +301,10 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
                 evocar++;
 
                 int exito=0;
-                evocarLSD(lsd,aux.codigo,&aux);
-                evocarLSO(lso,aux.codigo,&aux);
-                evocarLSOBT(lsobt,aux.codigo,&aux);
-                evocarLVO(lvo,aux.codigo,&aux);
+                evocarLSD(lsd,aux.codigo,&aux2);
+                evocarLSO(lso,aux.codigo,&aux2);
+                evocarLSOBT(lsobt,aux.codigo,&aux2);
+                evocarLVO(lvo,aux.codigo,&aux2);
             }
             else
             {

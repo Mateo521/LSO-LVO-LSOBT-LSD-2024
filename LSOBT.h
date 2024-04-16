@@ -104,6 +104,7 @@ int LocalizarLSOBT(lsobt *lista, char codigo[], int *pos, int p) {
 
     *pos = li;
 
+
     if (p == 0) {
         lista->fracasos++;
         lista->total_fracasos++;
