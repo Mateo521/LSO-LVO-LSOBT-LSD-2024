@@ -190,22 +190,22 @@ void BajaLVO(lvo *lista, Envio envio) {
         eliminar = lista->inicio;
     }
 
-    // Variable para almacenar el costo de cambio de puntero
-    float costoCambioPuntero = 0; // Cambiado a float para permitir incrementos de 0.5
+
+    float costoCambioPuntero = 0;
 
     if (eliminar->siguiente == NULL) {
-        // Si el nodo a eliminar es el último nodo
+
         if (anterior != NULL) {
             anterior->siguiente = NULL;
         } else {
             lista->inicio = NULL;
         }
     } else {
-        // Si el nodo a eliminar no es el último nodo
+        // Si  nodo a eliminar no es el último nodo
         if (anterior != NULL) {
             anterior->siguiente = eliminar->siguiente;
-            // Calcular el costo de cambio de puntero
-            costoCambioPuntero += 0.5; // Incrementar el contador en 0.5
+
+            costoCambioPuntero += 0.5;
         } else {
             lista->inicio = eliminar->siguiente;
         }
@@ -214,18 +214,18 @@ void BajaLVO(lvo *lista, Envio envio) {
     free(eliminar);
     lista->contador--;
 
-    // Incrementar el contador de punteros actualizados
+
     lista->costo_punteros_actualizados_b += costoCambioPuntero;
 
-    // Actualizar el máximo costo de cambio de puntero
+
     if (lista->costo_punteros_actualizados_b > lista->max_costo_b) {
         lista->max_costo_b = lista->costo_punteros_actualizados_b;
     }
 
-    // Incrementar el contador de bajas
+
     lista->num_bajas++;
 
-    // Calcular la media de los costos de cambio de puntero
+
        lista->BajaMaxima = lista->max_costo_b/lista->num_bajas;
 
 
