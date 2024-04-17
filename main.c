@@ -17,9 +17,9 @@ void mostrarSubmenu()
 
     printf("--Submenu--\n");
     printf("1. Mostrar Lista Secuencial Ordenada (LSO)\n");
-    printf("2. \"Lista Secuencial Desordenada (LSD):\n");
-    printf("3. Mostrar Arbol Binario de Busqueda (LSOBT)\n");
-    printf("4. Mostrar Arbol Binario de Busqueda (LVO)\n");
+    printf("2. Mostrar Lista Secuencial Desordenada (LSD):\n");
+    printf("3. Mostrar Lista Secuencial Ordenada con Busqueda por Triseccion (LSOBT)\n");
+    printf("4. Mostrar Lista Vinculada Ordenada (LVO)\n");
     printf("5. Volver al Menu Principal\n");
 }
 char *Mayusculas(char string[])
@@ -132,10 +132,9 @@ int main()
                 printf("LSOBT  :: %.2f |   %.2f |  %.2f  |  %.2f  |   %d   |  %.2f    |  %d    |  %.2f   | \n",lsobt.aMax, lsobt.aMed, lsobt.bMax, lsobt.bMed, lsobt.max_exitos, lsobt.media_exitos, lsobt.max_fracasos, lsobt.media_fracasos);
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSD  :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lsd.aMax, lsd.aMed, lsd.bMax, lsd.bMed, lsd.eExMax, lsd.eExMed, lsd.eFrMax, lsd.eFrMed);
-
                 printf("-----------------------------------------------------------------------------------------------\n");
-               printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.max_costo_a, lvo.costo_punteros_actualizados_a / lvo.num_altas,lvo.max_costo_b, lvo.costo_punteros_actualizados_b / lvo.num_bajas, lvo.eExMax, lvo.eExMed, lvo.eFrMax, lvo.eFrMed);
-                 printf("-----------------------------------------------------------------------------------------------\n");
+                printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.AltaMaxima, lvo.AltaMedia, lvo.BajaMaxima,lvo.BajaMedia , lvo.eExMax, lvo.eExMed,lvo.eFrMax , lvo.eFrMed);
+                printf("-----------------------------------------------------------------------------------------------\n");
 
                 break;
             case 2:
@@ -221,7 +220,7 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -232,9 +231,9 @@ int LecturaOperaciones(lso *lso,lsd *lsd,lsobt *lsobt, lvo *lvo)
 
     else
     {
-        //printf("HOLAAA");
+
         int codigoOperador=0, contadorEnvios=0,i;
-        while (!(feof(fp))&&contadorEnvios<=MAX_Envios)
+        while (!(feof(fp)))
         {
 
 

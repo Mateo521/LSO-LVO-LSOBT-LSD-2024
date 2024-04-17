@@ -20,14 +20,21 @@ typedef struct {
     Nodo* inicio;
     int contador;
 
-    float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
+    float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef,AltaMaxima,AltaMedia,BajaMaxima,BajaMedia;
     double costo_punteros_actualizados_a,costo_punteros_actualizados_b, max_costo_a,max_costo_b;
     int num_altas,num_bajas;
 } lvo;
 
 void initLVO(lvo *lista) {
     lista->max_costo_a= 0.0;
-     lista->max_costo_a= 0.0;
+
+
+lista->AltaMaxima=0.0;
+lista->AltaMedia=0.0;
+lista->BajaMaxima=0.0;
+lista->BajaMedia=0.0;
+
+
     lista->inicio = NULL;
     lista->contador = 0;
     lista->num_altas = 0 ;
@@ -74,50 +81,47 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
         actual = actual->siguiente;
         i++;
     }
+      if (i < lista->contador) {
+
+
+     temp++;
+
+        }
     if (actual != NULL && strcmp(actual->envio.codigo, codigo) == 0) {
 
                if(p==0){
 
             if(lista->eExMax<temp){
-                lista->eExMax = temp+1;
+                lista->eExMax = temp;
             }
             lista->eExCant++;
             lista->costoEvoE+=temp;
             lista->tempe+=lista->costoEvoE;
+
+
+               lista->eExMed= lista->tempe/ lista->eExCant;
         }
 
         return 1;
     } else {
-        if (i < lista->contador) {
 
 
-     temp++;
-
-
-
-        }
-
-
-
-if(p==0){
+ if(p==0){
             if(lista->eFrMax<temp){
-                lista->eFrMax = temp+1;
+                lista->eFrMax = temp;
             }
 
             lista->eFrCant++;
             lista->costoEvoF+=temp;
             lista->tempef+=lista->costoEvoF;
 
+                lista->eFrMed= lista->tempef/ lista->eFrCant;
 
         }
 
         return 0;
 
-
-
     }
-
-
     return 0;
 }
 
@@ -135,17 +139,40 @@ void AltaLVO(lvo *lista, Envio nuevoEnvio) {
         free(nuevoNodo);
         return;
     }
+
     if (anterior != NULL) {
+
+               lista->costo_punteros_actualizados_a += 0.5;
     nuevoNodo->siguiente = anterior->siguiente;
 } else {
+
+     lista->costo_punteros_actualizados_a += 0.5;
     nuevoNodo->siguiente = lista->inicio;
 }
     if (anterior == NULL) {
         lista->inicio = nuevoNodo;
+
+
     } else {
+
+
+           lista->costo_punteros_actualizados_a += 0.5;
         anterior->siguiente = nuevoNodo;
     }
     lista->contador++;
+
+
+        lista->num_altas++;
+         if (lista->costo_punteros_actualizados_a > lista->max_costo_a) {
+            lista->max_costo_a = lista->costo_punteros_actualizados_a;
+
+
+        }
+
+       lista->AltaMaxima = lista->max_costo_a/lista->num_altas;
+
+
+       lista->AltaMedia = lista->costo_punteros_actualizados_a/lista->num_altas;
 }
 
 
@@ -157,21 +184,54 @@ void BajaLVO(lvo *lista, Envio envio) {
         return;
     }
     Nodo *eliminar;
-if (anterior != NULL) {
-    eliminar = anterior->siguiente;
-} else {
-    eliminar = lista->inicio;
-}
-    if (anterior == NULL) {
-        lista->inicio = eliminar->siguiente;
+    if (anterior != NULL) {
+        eliminar = anterior->siguiente;
     } else {
-        anterior->siguiente = eliminar->siguiente;
+        eliminar = lista->inicio;
     }
+
+    // Variable para almacenar el costo de cambio de puntero
+    float costoCambioPuntero = 0; // Cambiado a float para permitir incrementos de 0.5
+
+    if (eliminar->siguiente == NULL) {
+        // Si el nodo a eliminar es el último nodo
+        if (anterior != NULL) {
+            anterior->siguiente = NULL;
+        } else {
+            lista->inicio = NULL;
+        }
+    } else {
+        // Si el nodo a eliminar no es el último nodo
+        if (anterior != NULL) {
+            anterior->siguiente = eliminar->siguiente;
+            // Calcular el costo de cambio de puntero
+            costoCambioPuntero += 0.5; // Incrementar el contador en 0.5
+        } else {
+            lista->inicio = eliminar->siguiente;
+        }
+    }
+
     free(eliminar);
     lista->contador--;
 
+    // Incrementar el contador de punteros actualizados
+    lista->costo_punteros_actualizados_b += costoCambioPuntero;
 
+    // Actualizar el máximo costo de cambio de puntero
+    if (lista->costo_punteros_actualizados_b > lista->max_costo_b) {
+        lista->max_costo_b = lista->costo_punteros_actualizados_b;
+    }
+
+    // Incrementar el contador de bajas
+    lista->num_bajas++;
+
+    // Calcular la media de los costos de cambio de puntero
+       lista->BajaMaxima = lista->max_costo_b/lista->num_bajas;
+
+
+       lista->BajaMedia = lista->costo_punteros_actualizados_b/lista->num_bajas;
 }
+
 
 
 int evocarLVO(lvo *lista, char codigo[], Envio *envio) {
