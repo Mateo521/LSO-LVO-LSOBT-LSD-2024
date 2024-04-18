@@ -34,12 +34,23 @@ RUTA 28 100
 Julio Argentino Roca
 2020-03-04
 2020-03-19
+1
+AA5
+26428816
+Samuel Cabanchik
+RUTA NÂ°6 KM 30 100
+19628743
+Hipolito Yrigoyen
+2020-03-14
+2020-03-29
+1
+AA6
+14525226
+Facundo Cabral
+GUEMES 165
+12064297
+Marcelo T. de Alvear
+2020-03-01
+2020-03-16
 3
-AA4
-31716018
-Carlos Savransky
-RUTA 28 100
-43283521
-Julio Argentino Roca
-2020-03-04
-2020-03-19
+AA7

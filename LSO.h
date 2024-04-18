@@ -59,7 +59,7 @@ int Localizar(lso *lista, char codigo[], int *pos, int p) {
         if(p==0){
 
             if(lista->eExMax<temp){
-                lista->eExMax = temp+1;
+                lista->eExMax = temp;
             }
 
             lista->eExCant++;
@@ -82,7 +82,7 @@ int Localizar(lso *lista, char codigo[], int *pos, int p) {
         }
         if(p==0){
             if(lista->eFrMax<temp){
-                lista->eFrMax = temp+1;
+                lista->eFrMax = temp;
             }
 
             lista->eFrCant++;
