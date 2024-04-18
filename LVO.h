@@ -154,32 +154,40 @@ int AltaLVO(lvo *lista, Envio envio) {
 
        }else{
            if(lista->inicio==lista->actual){
-               if(lista->inicio==NULL){
-                   temp+=0.5;
-               }else{
-                   temp+=1;
-               }
+
                    nuevoNodo->siguiente=lista->inicio;
                    lista->inicio=nuevoNodo;
                    lista->actual=lista->inicio;
+                   temp+=1;
 
            }else{
-               if(lista->actual == NULL){
-                   temp+=0.5;
-               }
-               else{
-                   temp+=1;
-               }
-                   nuevoNodo->siguiente=lista->actual;
+
                    lista->anterior->siguiente=nuevoNodo;
+                   nuevoNodo->siguiente=lista->actual;
+                   temp+=1;
+
 
 
            }
 
 
            //CALCULO DE COSTOS
+           lista->costo = temp;
+           if (lista->costo > lista->aMax) {
 
+               lista->aMax = lista->costo; //maximo
+
+
+
+           }
+
+           lista->aCant++;
+           lista->tempa+=lista->costo; //promedio
            lista->contador++;
+
+           lista->aMed=lista->tempa/(lista->aCant);
+
+
            return  1;
        }
 
@@ -217,17 +225,26 @@ int BajaLVO(lvo *lista, Envio envio) {
             temp += 0.5;
 
 
-            lista->costo_punteros_actualizados_b += temp;
-            if (lista->costo_punteros_actualizados_b > lista->max_costo_b) {
-                lista->max_costo_b = lista->costo_punteros_actualizados_b;
-            }
-            lista->num_bajas++;
-            lista->BajaMaxima = lista->max_costo_b;
-            lista->BajaMedia = lista->max_costo_b/lista->num_bajas;
-
-
-            //CALCULO DE COSTOS
             lista->contador--;
+
+            lista->costo = temp;
+
+            if (lista->costo > lista->bMax) {
+
+                lista->bMax = lista->costo; //maximo
+
+            }
+
+            lista->tempb+=lista->costo; //promedio
+
+            lista->bCant++;
+
+            lista->bMed=lista->tempb/(lista->bCant);
+
+
+
+
+
             return 1;
             }
         else{

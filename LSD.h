@@ -50,25 +50,29 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
 
             if (lista->eExMax < temp) {
                 lista->eExMax = temp ;
+
             }
             lista->eExCant++;
             lista->costoEvoE += temp;
-            //lista->tempe+=lista->costoEvoE;
-            lista->eExMed = (lista->costoEvoE / (lista->eExCant));
+            lista->tempe+=lista->costoEvoE;
+            lista->eExMed = lista->costoEvoE / (lista->eExCant);
         }
         return 0;
 
     }else{
-        if(p==0) {
+        if(p==0){
+            printf("codigo: %s ----> costo: %f\n",codigo,temp);
+            getchar();
+            if(lista->eFrMax<temp){
+                lista->eFrMax = temp;
 
-            if (lista->eFrMax < temp) {
-                lista->eFrMax = temp ;
             }
 
+
             lista->eFrCant++;
-            lista->costoEvoF += temp;
-            //lista->tempef+=lista->costoEvoF;
-            lista->eFrMed = (lista->costoEvoF / (lista->eFrCant));
+            lista->costoEvoF+=temp;
+            lista->tempef+=lista->costoEvoF;
+            lista->eFrMed = lista->costoEvoF/(lista->eFrCant);
 
         }
         return 1;

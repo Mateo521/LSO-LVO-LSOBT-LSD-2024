@@ -133,7 +133,7 @@ int main()
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSD  :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lsd.aMax, lsd.aMed, lsd.bMax, lsd.bMed, lsd.eExMax, lsd.eExMed, lsd.eFrMax, lsd.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
-                printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.AltaMaxima, lvo.AltaMedia, lvo.BajaMaxima,lvo.BajaMedia , lvo.eExMax, lvo.eExMed,lvo.eFrMax , lvo.eFrMed);
+                printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.aMax, lvo.aMed, lvo.bMax, lvo.bMed, lvo.eExMax, lvo.eExMed, lvo.eFrMax, lvo.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
 
                 break;

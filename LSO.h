@@ -76,10 +76,6 @@ int Localizar(lso *lista, char codigo[], int *pos, int p) {
     } else {
 
 
-        if(i<lista->contador){
-
-            temp++;
-        }
         if(p==0){
             if(lista->eFrMax<temp){
                 lista->eFrMax = temp;
