@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug"
+			"value" : "c:/Users/Usuario/Desktop/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -475,7 +475,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/Usuario/Desktop/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -547,7 +547,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024"
+			"value" : "C:/Users/Usuario/Desktop/LSO-LVO-LSOBT-LSD-2024"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1179,7 +1179,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug"
+			"value" : "C:/Users/Usuario/Desktop/LSO-LVO-LSOBT-LSD-2024/cmake-build-debug"
 		},
 		{
 			"name" : "untitled1_IS_TOP_LEVEL",
@@ -1203,7 +1203,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/lautaro/OneDrive/Escritorio/LSO-LVO-LSOBT-LSD-2024"
+			"value" : "C:/Users/Usuario/Desktop/LSO-LVO-LSOBT-LSD-2024"
 		}
 	],
 	"kind" : "cache",

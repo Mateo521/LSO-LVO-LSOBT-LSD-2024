@@ -18,6 +18,8 @@ char *Mayusculas(char string[]);
 
 typedef struct {
     Nodo* inicio;
+    Nodo* anterior;
+    Nodo* actual;
     int contador;
 
     float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef,AltaMaxima,AltaMedia,BajaMaxima,BajaMedia;
@@ -65,7 +67,7 @@ lista->BajaMedia=0.0;
 }
 
 
-int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
+int LocalizarLVO(lvo *lista, char codigo[], int p) {
 
 
     lista->costoEvoE=0.0;
@@ -73,23 +75,28 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
     float temp =0.0;
 
 
-    Nodo *actual = lista->inicio;
+    lista->actual=lista->inicio;
+    lista->anterior=lista->actual;
+
+
     int i = 0;
-    while (actual != NULL && strcmp(actual->envio.codigo, codigo) < 0) {
-            temp++;
-        *anterior = actual;
-        actual = actual->siguiente;
+    while (lista->actual != NULL && strcmp(lista->actual->envio.codigo, codigo) < 0) {
+
+
+        temp++;
+        lista->anterior = lista->actual;
+        lista->actual = lista->actual->siguiente;
         i++;
     }
-      if (i < lista->contador) {
+      if (lista->actual != NULL) {
 
 
      temp++;
 
         }
-    if (actual != NULL && strcmp(actual->envio.codigo, codigo) == 0) {
+    if (lista->actual != NULL && strcmp(lista->actual->envio.codigo, codigo) == 0) {
 
-               if(p==0){
+        if(p==0){
 
             if(lista->eExMax<temp){
                 lista->eExMax = temp;
@@ -99,14 +106,14 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
             lista->tempe+=lista->costoEvoE;
 
 
-               lista->eExMed= lista->tempe/ lista->eExCant;
+            lista->eExMed= lista->tempe/ lista->eExCant;
         }
 
         return 1;
     } else {
 
 
- if(p==0){
+        if(p==0){
             if(lista->eFrMax<temp){
                 lista->eFrMax = temp;
             }
@@ -115,7 +122,7 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
             lista->costoEvoF+=temp;
             lista->tempef+=lista->costoEvoF;
 
-                lista->eFrMed= lista->tempef/ lista->eFrCant;
+            lista->eFrMed= lista->tempef/ lista->eFrCant;
 
         }
 
@@ -129,126 +136,118 @@ int LocalizarLVO(lvo *lista, char codigo[], Nodo **anterior, int p) {
 
 
 
-void AltaLVO(lvo *lista, Envio nuevoEnvio) {
+int AltaLVO(lvo *lista, Envio envio) {
     Nodo *nuevoNodo = (Nodo *)malloc(sizeof(Nodo));
-    nuevoNodo->envio = nuevoEnvio;
-    nuevoNodo->siguiente = NULL;
-    Nodo *anterior = NULL;
-    int encontrado = LocalizarLVO(lista, nuevoEnvio.codigo, &anterior, 1);
-    if (encontrado) {
-        free(nuevoNodo);
-        return;
-    }
+   float temp = 0;
 
-    if (anterior != NULL) {
+   if(nuevoNodo ==NULL){
+       return 0;
+   }else{
 
-               lista->costo_punteros_actualizados_a += 0.5;
-    nuevoNodo->siguiente = anterior->siguiente;
-} else {
+       nuevoNodo->siguiente = NULL;
+       nuevoNodo->envio = envio;
 
-     lista->costo_punteros_actualizados_a += 0.5;
-    nuevoNodo->siguiente = lista->inicio;
+       if(LocalizarLVO(lista,envio.codigo,1)){
+           free(nuevoNodo);
+           return 0;
+
+
+       }else{
+           if(lista->inicio==lista->actual){
+               if(lista->inicio==NULL){
+                   temp+=0.5;
+               }else{
+                   temp+=1;
+               }
+                   nuevoNodo->siguiente=lista->inicio;
+                   lista->inicio=nuevoNodo;
+                   lista->actual=lista->inicio;
+
+           }else{
+               if(lista->actual == NULL){
+                   temp+=0.5;
+               }
+               else{
+                   temp+=1;
+               }
+                   nuevoNodo->siguiente=lista->actual;
+                   lista->anterior->siguiente=nuevoNodo;
+
+
+           }
+
+
+           //CALCULO DE COSTOS
+
+           lista->contador++;
+           return  1;
+       }
+
+   }
+
+
+
 }
-    if (anterior == NULL) {
-        lista->inicio = nuevoNodo;
 
 
+int BajaLVO(lvo *lista, Envio envio) {
+    float temp = 0;
+
+    if (LocalizarLVO(lista, envio.codigo, 1)==0) {
+        return 0;
     } else {
+        if ((strcmp(lista->actual->envio.direccion, envio.direccion) == 0) &&
+            (lista->actual->envio.dni_receptor == envio.dni_receptor)
+            && (lista->actual->envio.dni_remitente == envio.dni_remitente) &&
+            (strcmp(lista->actual->envio.fecha_envio, envio.fecha_envio) == 0)
+            && (strcmp(lista->actual->envio.fecha_recepcion, envio.fecha_recepcion) == 0) &&
+            (strcmp(lista->actual->envio.nombre, envio.nombre) == 0)
+            && (strcmp(lista->actual->envio.nombre_r, envio.nombre_r) == 0)) {
+
+            if (lista->actual == lista->inicio) {
+                lista->inicio = lista->actual->siguiente;
+                lista->anterior = lista->inicio;
+            } else {
+                lista->anterior->siguiente = lista->actual->siguiente;
+            }
+
+            free(lista->actual);
+            lista->actual = lista->inicio;
+
+            temp += 0.5;
 
 
-           lista->costo_punteros_actualizados_a += 0.5;
-        anterior->siguiente = nuevoNodo;
-    }
-    lista->contador++;
+            lista->costo_punteros_actualizados_b += temp;
+            if (lista->costo_punteros_actualizados_b > lista->max_costo_b) {
+                lista->max_costo_b = lista->costo_punteros_actualizados_b;
+            }
+            lista->num_bajas++;
+            lista->BajaMaxima = lista->max_costo_b;
+            lista->BajaMedia = lista->max_costo_b/lista->num_bajas;
 
 
-        lista->num_altas++;
-         if (lista->costo_punteros_actualizados_a > lista->max_costo_a) {
-            lista->max_costo_a = lista->costo_punteros_actualizados_a;
-
-
+            //CALCULO DE COSTOS
+            lista->contador--;
+            return 1;
+            }
+        else{
+            return 0;
         }
 
-       lista->AltaMaxima = lista->max_costo_a/lista->num_altas;
+    }
 
-
-       lista->AltaMedia = lista->costo_punteros_actualizados_a/lista->num_altas;
 }
 
+int evocarLVO(lvo *lista,char codigo[], Envio *envio) {
 
-void BajaLVO(lvo *lista, Envio envio) {
-    Nodo *anterior = NULL;
-    int pos;
-    int encontrado = LocalizarLVO(lista, envio.codigo, &anterior, 1);
-    if (!encontrado) {
-        return;
+    if(LocalizarLVO(lista,codigo,0)){
+        *envio = lista->actual->envio;
+        return  1;
     }
-    Nodo *eliminar;
-    if (anterior != NULL) {
-        eliminar = anterior->siguiente;
-    } else {
-        eliminar = lista->inicio;
+    else{
+        return  0;
     }
 
-
-    float costoCambioPuntero = 0;
-
-    if (eliminar->siguiente == NULL) {
-
-        if (anterior != NULL) {
-            anterior->siguiente = NULL;
-        } else {
-            lista->inicio = NULL;
-        }
-    } else {
-        // Si  nodo a eliminar no es el último nodo
-        if (anterior != NULL) {
-            anterior->siguiente = eliminar->siguiente;
-
-            costoCambioPuntero += 0.5;
-        } else {
-            lista->inicio = eliminar->siguiente;
-        }
-    }
-
-    free(eliminar);
-    lista->contador--;
-
-
-    lista->costo_punteros_actualizados_b += costoCambioPuntero;
-
-
-    if (lista->costo_punteros_actualizados_b > lista->max_costo_b) {
-        lista->max_costo_b = lista->costo_punteros_actualizados_b;
-    }
-
-
-    lista->num_bajas++;
-
-
-       lista->BajaMaxima = lista->max_costo_b/lista->num_bajas;
-
-
-       lista->BajaMedia = lista->costo_punteros_actualizados_b/lista->num_bajas;
-}
-
-
-
-int evocarLVO(lvo *lista, char codigo[], Envio *envio) {
-
-    Nodo *anterior = NULL;
-    int pos;
-    int res = LocalizarLVO(lista, codigo, &anterior, 0);
-    if (res == 1) {
-        if (anterior != NULL) {
-    *envio = anterior->siguiente->envio;
-} else {
-    *envio = lista->inicio->envio;
-}
-        return 1; // Se encontró el envío
-    } else {
-        return 0; // No se encontró el envío
-    }
 }
 
 
