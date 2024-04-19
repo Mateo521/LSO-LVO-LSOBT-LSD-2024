@@ -1,3 +1,21 @@
+/*
+
+ En resumen, las listas vinculadas ordenadas y las listas desordenadas son ideales para manipular grandes volúmenes
+ de datos debido a su eficiencia en la inserción y eliminación. Sin embargo, su rendimiento puede no ser óptimo para
+ operaciones que requieren un acceso aleatorio rápido, como en el caso de evocaciones exitosas o de fracaso.
+
+ Por otro lado, es importante destacar que, en el contexto de evocaciones donde se requiere un acceso rápido a los
+ datos ordenados, la lista secuencial ordenada con búsqueda por trisección emerge como una opción altamente eficiente.
+ Esta técnica aprovecha la estructura ordenada de la lista para realizar búsquedas rápidas, dividiendo iterativamente la
+ lista en tres partes y descartando las secciones irrelevantes en función de la clave de búsqueda.
+
+
+Además, es crucial tener en cuenta que la Lista Secuencial Ordenada (LSO) puede resultar menos conveniente en comparación
+con las otras estructuras debido a los costos asociados con las operaciones de inserción y eliminación.
+ */
+
+
+
 
 #include <stdio.h>
 #include <direct.h>
@@ -9,6 +27,9 @@
 #include "LSD.h"
 #include "LVO.h"
 #include "LSOBT.h"
+
+
+
 int LecturaOperaciones();
 char* Mayusculas();
 void mostrarestructura();
@@ -135,6 +156,7 @@ int main()
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LVO   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",lvo.aMax, lvo.aMed, lvo.bMax, lvo.bMed, lvo.eExMax, lvo.eExMed, lvo.eFrMax, lvo.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
+
 
                 break;
             case 2:

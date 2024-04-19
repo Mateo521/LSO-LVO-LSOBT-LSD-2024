@@ -45,6 +45,8 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
     if(i<lista->contador){
         temp++;
     }
+
+
     if(strcmp(lista->envios[i].codigo,codigo)==0){
         if(p==0) {
 
@@ -61,8 +63,8 @@ int localizarlsd(lsd *lista, char codigo[],int *pos, int p){
 
     }else{
         if(p==0){
-            printf("codigo: %s ----> costo: %f\n",codigo,temp);
-            getchar();
+
+
             if(lista->eFrMax<temp){
                 lista->eFrMax = temp;
 
