@@ -1,0 +1,74 @@
+1
+AA1
+30996855
+Marcelo Sanchez Sorondo
+AVENIDA SAN MARTIN 11157
+33648951
+Bartolome Mitre
+2020-03-01
+2020-03-16
+1
+AA3
+21644952
+Anibal Sanchez Reulet
+LOS CEIBOS 10
+13561786
+Domingo F. Sarmiento
+2020-03-02
+2020-03-17
+1
+AA4
+37678270
+Beatriz Sarlo
+AV. LOS MANDARINOS 10
+25054253
+Nicolas Avellaneda
+2020-03-03
+2020-03-18
+1
+AA5
+31716018
+Carlos Savransky
+RUTA 28 100
+43283521
+Julio Argentino Roca
+2020-03-04
+2020-03-19
+1
+AA7
+26428816
+Samuel Cabanchik
+RUTA NÂ°6 KM 30 100
+19628743
+Hipolito Yrigoyen
+2020-03-14
+2020-03-29
+1
+AA9
+14525226
+Facundo Cabral
+GUEMES 165
+12064297
+Marcelo T. de Alvear
+2020-03-01
+2020-03-16
+1
+AA10
+14525226
+Facundo Cabral
+GUEMES 165
+12064297
+Marcelo T. de Alvear
+2020-03-01
+2020-03-16
+1
+AA12
+14525226
+Facundo Cabral
+GUEMES 165
+12064297
+Marcelo T. de Alvear
+2020-03-01
+2020-03-16
+3
+AA12

@@ -1,0 +1,77 @@
+# depslib dependency file v1.0
+1713485633 source:c:\users\mateo\downloads\tpmaquina\main.c
+	<stdio.h>
+	<direct.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Envios.h"
+	"LSO.h"
+	"LSD.h"
+	"LVO.h"
+	"LSOBT.h"
+
+1713484592 c:\users\mateo\downloads\tpmaquina\envios.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1713484824 c:\users\mateo\downloads\tpmaquina\lso.h
+	"Envios.h"
+	<String.h>
+
+1713485499 c:\users\mateo\downloads\tpmaquina\lsd.h
+	"Envios.h"
+	<String.h>
+
+1713484790 c:\users\mateo\downloads\tpmaquina\lvo.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+	<stdbool.h>
+	"Envios.h"
+
+1713484785 c:\users\mateo\downloads\tpmaquina\lsobt.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+
+1713485708 source:c:\users\mateo\downloads\tpmaquina_codeblocks\main.c
+	<stdio.h>
+	<direct.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Envios.h"
+	"LSO.h"
+	"LSD.h"
+	"LVO.h"
+	"LSOBT.h"
+
+1713484592 c:\users\mateo\downloads\tpmaquina_codeblocks\envios.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1713484824 c:\users\mateo\downloads\tpmaquina_codeblocks\lso.h
+	"Envios.h"
+	<String.h>
+
+1713485499 c:\users\mateo\downloads\tpmaquina_codeblocks\lsd.h
+	"Envios.h"
+	<String.h>
+
+1713484790 c:\users\mateo\downloads\tpmaquina_codeblocks\lvo.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+	<stdbool.h>
+	"Envios.h"
+
+1713484785 c:\users\mateo\downloads\tpmaquina_codeblocks\lsobt.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+
